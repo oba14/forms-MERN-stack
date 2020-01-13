@@ -47,8 +47,8 @@ connection.once('open', () => {
 
 
 /**************** ROUTES ********/
-app.use('/report', reportRoutes); // REGISTRATION ROUTES
-app.use('/report', fileUploadRoutes); //FILE UPLOAD ROUTES
+app.use('/report', reportRoutes); 
+app.use('/report', fileUploadRoutes); 
 
 app.get("/report/fileUpload/image/:filename", (req, res) => {
   gfs.files.findOne({ filename: req.params.filename }, (err, file) => {

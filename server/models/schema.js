@@ -57,10 +57,6 @@ let Forms = new Schema({
 		type: Date,
 		default: Date.now
 	},
-	reporting: {
-		type: String,
-		default: ''
-	},
 	username: {
 		type: String,
 		default: ''
