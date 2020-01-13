@@ -114,35 +114,6 @@ export const deleteForm = id => {
     }
 }
 
-
-
-// export const toggleTodo = todo => {
-//     todo.done = !todo.done 
-//     console.log('STATUSSSSS', todo.done)
-//     return async (dispatch) => {
-//         // Sending put request to update the record in mongodb
-//         await axios({
-//             method: 'put',
-//             url: `http://localhost:5000/todolist/edit/${todo._id}`,
-//             data: todo
-//         })
-//         .then(succ => {
-//           console.log("item successfully UPDATED after TOGGLE MONGOOSE", succ.status)
-//           dispatch({
-//               type: 'TOGGLE_TODO',
-//               id: todo._id
-//           })  
-//         })
-//       .catch(error => {
-//           console.log("Item couldnt Updated after TOGGLE MONGOOSE", error.message)
-//           dispatch({
-//               type: 'ERROR_FETCHING',
-//               error: error.message
-//           })
-//       })
-//     }
-// }
-
 export const editForm = form => {
     console.log('item TO BE UPDATED', form);
     

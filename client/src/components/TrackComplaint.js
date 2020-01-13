@@ -10,22 +10,13 @@ import { useForm } from 'react-hook-form';
 
 const TrackComplaint = () => {
 
-  const dispatch = useDispatch()
-  //const [tockenNo, setTocken] = useState('')
-  
+  const dispatch = useDispatch()  
   const form = useSelector(state => state.form.form)
   const formExist = useSelector(state => state.form.formExist)
   const error = useSelector(state => state.form.error)
-  
-  console.log('FORMEXIST', formExist);
-  console.log('ERROR',error);
-  
-  
-
   const [editing, setEditing] = useState(false)
   const [editedName, setEditedName] = useState('')
   const [editedEmail, setEditedEmail] = useState('')
-  //const [formsReq, setFormsReq] = useState(form);
   const { register, handleSubmit } = useForm();
   
   useEffect (() => {
@@ -34,17 +25,9 @@ const TrackComplaint = () => {
 
   const add = (event) => {
     //event.preventDefault()
-    console.log('data', event);
-    
     const tokenNo = event.token;
     dispatch(searchToken(tokenNo))
-
-  setTimeout(() => {
-    console.log('FORMEXIST inside', formExist);
-  console.log('ERROR inside',error);
-  }, 3000)
   
-
     if(formExist ){
       toast.success("Form found!")
     } else {
@@ -79,7 +62,6 @@ const downloadAttachments = (fileName) => {
         a.download = fileName;
         a.click();
       });
-    //window.location.href = response.url;
     });
 }
 
@@ -143,21 +125,6 @@ const downloadAttachments = (fileName) => {
           </Card>
         </div>
       )}
-      {/* {error && (
-        <div>
-          {toast.error("Given Form number doesn't exist!")}
-          <ToastContainer 
-          position="top-center"
-          autoClose={2500}
-          hideProgressBar={true}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnVisibilityChange
-          draggable
-          pauseOnHover/>
-        </div>
-      )} */}
     </div>  
 
   </div>
