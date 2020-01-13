@@ -7,6 +7,7 @@ import {
 } from 'reactstrap';
 import { ToastContainer, toast } from 'react-toastify';
 
+
 const TrackComplaint = () => {
 
   const dispatch = useDispatch()
@@ -71,14 +72,18 @@ const downloadAttachments = (fileName) => {
       </div>
   <div style={{margin: "10px"}}>
       { !editing && formExist && (
+          <div>
+          {toast.success("Form found!", { position: toast.POSITION.TOP_CENTER, autoClose: 1300 })}
+          <ToastContainer />
+          
          <Card className= "cards">
           <CardBody style={{ width: '100%' }}>
           <CardText>Name: {form.username}</CardText>
           <CardText> Email: {form.email}</CardText>
-          <CardText>{form.attachments.length > 0 && (form.attachments.map((file, fileIndex) => 
-                      <div key={fileIndex}>
+          <CardText>Download Fle: {form.attachments.length > 0 && (form.attachments.map((file, fileIndex) => 
+                      <span key={fileIndex}>
                       <a key={fileIndex} href="#" onClick={ () => downloadAttachments(file.filename)}>{file.filename}</a><br></br>
-                      </div>
+                      </span>
                     )
                   )}</CardText>
           <Button className= "button" onClick={() => dispatch(deleteForm(form._id))} >  
@@ -89,6 +94,7 @@ const downloadAttachments = (fileName) => {
            </Button>
          </CardBody>
         </Card>
+        </div>
       )}
 
 
