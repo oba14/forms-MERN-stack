@@ -58,10 +58,7 @@ const ShortReport = () => {
       console.log('INPUT FILES', inputFiles);
       
       // Display a success toast, with a title
-      toast.success(`${inputFiles.length} Files added`, 
-        { position: toast.POSITION.TOP_CENTER,
-          closeButton:false,
-          autoClose: 2000 })
+      toast.success(`${inputFiles.length} Files added`)
       
       //dispatch(filesLoaded())
       
@@ -135,7 +132,16 @@ const ShortReport = () => {
             )}
       </div>
       </div>
-      <ToastContainer />        
+      <ToastContainer 
+      position="top-center"
+      autoClose={1300}
+      hideProgressBar={true}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnVisibilityChange
+      draggable
+      pauseOnHover/>        
     </div>
   )
 }

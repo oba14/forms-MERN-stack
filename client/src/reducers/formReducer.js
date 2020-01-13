@@ -1,6 +1,5 @@
 const initialState = {
   form: [],
-  allForms: [],
   attachments: [],
   isFetching: false,
   formSubmitted: false,
@@ -53,7 +52,7 @@ const formReducer = (state = initialState, action) => {
         ...state,
         form: [],
         isFetching: false,
-        formExist: true,
+        formExist: false,
         error: action.error,
         error_adding: false,
         error_deleting: false
