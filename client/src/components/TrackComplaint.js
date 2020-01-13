@@ -24,6 +24,16 @@ const TrackComplaint = () => {
   const add = (event) => {
     event.preventDefault()
      dispatch(searchToken(tockenNo))
+     
+    setTimeout(() => {
+      if(formExist) {
+        
+        toast.success("Form found!")
+      }else {
+        toast.error("Given Form number doesn't exist!")
+       }
+     }, 1000)
+     
   }
 
   const saveEditedForm = () => {
@@ -73,8 +83,16 @@ const downloadAttachments = (fileName) => {
   <div style={{margin: "10px"}}>
       { !editing && formExist && (
           <div>
-          {toast.success("Form found!", { position: toast.POSITION.TOP_CENTER, autoClose: 1300 })}
-          <ToastContainer />
+          {/* {toast.success("Form found!", { position: toast.POSITION.TOP_CENTER, autoClose: 1300 })} */}
+          <ToastContainer position="top-center"
+            autoClose={1500}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnVisibilityChange
+            draggable
+            pauseOnHover />
           
          <Card className= "cards">
           <CardBody style={{ width: '100%' }}>
@@ -110,12 +128,12 @@ const downloadAttachments = (fileName) => {
           </Card>
         </div>
       )}
-      {error && (
+      {/* {error && (
         <div>
           {toast.error("Given Form number doesn't exist!", { position: toast.POSITION.TOP_CENTER })}
           <ToastContainer />
         </div>
-      )}
+      )} */}
     </div>  
 
   </div>

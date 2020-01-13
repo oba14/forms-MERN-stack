@@ -44,7 +44,7 @@ const ShortReport = () => {
            event.target.value = null // discard selected file
            
            // Display an error toast
-           toast.error("Cannot add more than 3 files", { position: toast.POSITION.TOP_CENTER })
+           toast.error("Cannot add more than 3 files", { position: toast.POSITION.TOP_CENTER, autoClose: 1300 })
           return false;
  
       }
