@@ -9,7 +9,8 @@ const initialState = {
   error_adding: false,
   error_deleting: false,
   form_id: null,
-  loaded: false
+  loaded: false,
+  token: ''
 }
 /**
  * 
@@ -31,6 +32,11 @@ const formReducer = (state = initialState, action) => {
         loaded: true
       }
 
+    case 'FORM_EXIST':
+      return {
+        ...state,
+        formExist: true
+      }
     case 'IS_FETCHING':
       return {
         ...state,
@@ -47,7 +53,7 @@ const formReducer = (state = initialState, action) => {
         ...state,
         form: [],
         isFetching: false,
-        formExist: false,
+        formExist: true,
         error: action.error,
         error_adding: false,
         error_deleting: false

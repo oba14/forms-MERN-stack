@@ -1,12 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import uuid from 'uuid/v1';
-import { addForm, filesLoaded } from '../actions/todoActions';
+import { addForm } from '../actions/todoActions';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-dropzone-uploader/dist/styles.css';
 import {NavLink} from 'react-router-dom';
-import {Progress} from 'reactstrap';
 
 const ShortReport = () => {
 
@@ -14,7 +13,6 @@ const ShortReport = () => {
   const  formSubmitted  = useSelector(state=> state.form.formSubmitted)
   const  errorAdding  = useSelector(state=> state.form.error_adding)
   const form_id = useSelector(state => state.form.form_id)
-  const loaded = useSelector (state => state.form.loaded)
   const dispatch = useDispatch()
   const { register, handleSubmit } = useForm();
 
@@ -91,16 +89,6 @@ const ShortReport = () => {
         <label>2- Full Name</label> <br></br>
         <input className='form-control' type="text" placeholder="username" name="username" ref={register({ required: true })} required /><br />
 
-            {/* <div className="input-group">
-            <div className="input-group-prepend">
-              <span className="input-group-text" id="inputGroupPrepend">@</span>
-            </div>
-            <input type="text" className="form-control" id="validationCustomUsername" placeholder="Username" aria-describedby="inputGroupPrepend" required />
-            <div className="invalid-feedback">
-              Please choose a username.
-            </div>
-          </div> */}
-
         <label>3- Email</label> <br></br>
         <input 
           className='form-control'
@@ -126,11 +114,6 @@ const ShortReport = () => {
             <ul id="myList"> 
             </ul>
           </div>
-          {/* <div>
-          {loaded && (
-            <Progress max="100" color="success" value={100} >100 %</Progress>
-            )}
-          </div> */}
         <br/>
         <button className='btn btn-primary' type="submit" > Submit </button>
       </form>

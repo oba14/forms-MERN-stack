@@ -1,17 +1,17 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { deleteForm, editForm, searchToken } from '../actions/todoActions';
 import {
-  Card, CardText, CardBody,
-  CardTitle, Button
+  Card, CardText, CardBody, Button
 } from 'reactstrap';
 import { ToastContainer, toast } from 'react-toastify';
+import { useForm } from 'react-hook-form';
 
 
 const TrackComplaint = () => {
 
   const dispatch = useDispatch()
-  const [tockenNo, setTocken] = useState('')
+  //const [tockenNo, setTocken] = useState('')
   
   const form = useSelector(state => state.form.form)
   const formExist = useSelector(state => state.form.formExist)
@@ -20,20 +20,19 @@ const TrackComplaint = () => {
   const [editing, setEditing] = useState(false)
   const [editedName, setEditedName] = useState('')
   const [editedEmail, setEditedEmail] = useState('')
+  const [formsReq, setFormsReq] = useState(form);
+  const { register, handleSubmit } = useForm();
   
+  useEffect (() => {
+  
+  },[])
+
   const add = (event) => {
-    event.preventDefault()
-     dispatch(searchToken(tockenNo))
-     
-    setTimeout(() => {
-      if(formExist) {
-        
-        toast.success("Form found!")
-      }else {
-        toast.error("Given Form number doesn't exist!")
-       }
-     }, 1000)
-     
+    //event.preventDefault()
+    console.log('data', event);
+    
+    const tokenNo = event.token;
+    dispatch(searchToken(tokenNo))
   }
 
   const saveEditedForm = () => {
@@ -72,8 +71,9 @@ const downloadAttachments = (fileName) => {
       <div className='row'>
         <div className= 'col-md-8'>
           <h3>Enter Form Number</h3>
-          <form style={{margin: "15px"}} id="todoForm" onSubmit={add}>      
-            <input onChange={(event) => setTocken(event.target.value)} name="Text" type="text" placeholder="Text"></input><br></br>
+          <form  onSubmit={handleSubmit(add)} style={{margin: "15px"}} id="todoForm">      
+            <input className='form-control' type="text" placeholder="token" name="token" 
+            ref={register({ required: true })}></input><br></br>
             <button type="submit">
             <span role="img" aria-label="Add">👍</span>
             </button>
@@ -81,12 +81,12 @@ const downloadAttachments = (fileName) => {
         </div>
       </div>
   <div style={{margin: "10px"}}>
-      { !editing && formExist && (
+      { !error && !editing && formExist && (
           <div>
-          {/* {toast.success("Form found!", { position: toast.POSITION.TOP_CENTER, autoClose: 1300 })} */}
+          {toast.success("Form found!")}
           <ToastContainer position="top-center"
-            autoClose={1500}
-            hideProgressBar={false}
+            autoClose={2500}
+            hideProgressBar={true}
             newestOnTop={false}
             closeOnClick
             rtl={false}
@@ -98,7 +98,7 @@ const downloadAttachments = (fileName) => {
           <CardBody style={{ width: '100%' }}>
           <CardText>Name: {form.username}</CardText>
           <CardText> Email: {form.email}</CardText>
-          <CardText>Download Fle: {form.attachments.length > 0 && (form.attachments.map((file, fileIndex) => 
+          <CardText>Download Fle: {form.attachments && form.attachments.length > 0 && (form.attachments.map((file, fileIndex) => 
                       <span key={fileIndex}>
                       <a key={fileIndex} href="#" onClick={ () => downloadAttachments(file.filename)}>{file.filename}</a><br></br>
                       </span>
@@ -128,12 +128,21 @@ const downloadAttachments = (fileName) => {
           </Card>
         </div>
       )}
-      {/* {error && (
+      {error && (
         <div>
-          {toast.error("Given Form number doesn't exist!", { position: toast.POSITION.TOP_CENTER })}
-          <ToastContainer />
+          {toast.error("Given Form number doesn't exist!")}
+          <ToastContainer 
+          position="top-center"
+          autoClose={2500}
+          hideProgressBar={true}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnVisibilityChange
+          draggable
+          pauseOnHover/>
         </div>
-      )} */}
+      )}
     </div>  
 
   </div>
