@@ -1,5 +1,5 @@
 {
-  "name": "report-system",
+  "name": "forms-MERN-stack",
   "version": "1.0.0",
   "description": "* Create and setup an express server *",
   "main": "index.js",
@@ -10,9 +10,9 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/oba14/forms-MERN-stack"
   },
-  "author": "OA OT MJ",
+  "author": "OA",
   "license": "",
   "bugs": {
     "url": ""
