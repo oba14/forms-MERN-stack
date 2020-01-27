@@ -68,5 +68,49 @@ paths:
                   name: 'George W. Bush'
                 } 
         404:
-          description: "There is no form with this id"    
+          description: "There is no form with this id"
+  /report/edit/{id}:
+    put:
+      tags:
+        - "form"
+      summary: "Update a form"
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: "Form update"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "An updated form"
+          examples:
+            application/json:
+                {
+                  entity_type: "Mr",
+                  username: "alan donald",
+                  email: "alan@gmail.com",
+                  _id: "5e1a42c4d67ea8ba831"
+                } 
+        404:
+          description: "There is no form with this id"
+  /report/delete/{id}:
+    delete:
+      tags:
+        - "form"
+      summary: "Delete a form"
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: "Form delete"
+      produces:
+        - "application/json"
+      responses:
+        202:
+          description: "A deleted form"
+        404:
+          description: "There is no form with this id"
     
