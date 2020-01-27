@@ -1,0 +1,39 @@
+{
+  "env": {
+      "browser": true,
+      "es6": true,
+      "node": true,
+      "mocha": true,
+      "commonjs": true
+  },
+  "plugins": [
+    "mocha"
+  ],
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2017
+  },
+  "extends": "eslint:recommended",
+  "rules": {
+      "indent": [
+          "error",
+          2,
+          {
+            "SwitchCase": 1
+          }
+      ],
+      "linebreak-style": [
+          "error",
+          "windows"
+      ],
+      "quotes": [
+          "error",
+          "single"
+      ],
+      "semi": [
+          "error",
+          "always"
+      ],
+      "no-console": 1
+  }
+}

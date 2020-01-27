@@ -4,10 +4,10 @@ const app = express();
 const morgan = require('morgan');
 const port = 5000;
 const cors = require('cors');
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 let bodyParser = require('body-parser');
 
-const Grid = require("gridfs-stream");
+const Grid = require('gridfs-stream');
 
 const reportRoutes = require('../server/routes/reportRoutes');
 const fileUploadRoutes = require('../server/routes/fileUploadRoutes');
@@ -27,12 +27,17 @@ app.use(bodyParser.urlencoded({
 /************** mongodb ************************* */
 
 const uri = process.env.ATLAS_URI;
-console.log('mongo uri', uri);
+// console.log('mongo uri', uri);
 
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false})
-.then(() => {console.log('Database is connected') },
-err => { console.log('Can not connect to the database '+ err)}
-);
+  .then(() => {
+    // console.log('Database is connected'); 
+  },
+  // eslint-disable-next-line no-unused-vars
+  err => { 
+    // console.log('Can not connect to the database '+ err);
+  }
+  );
 mongoose.Promise = global.Promise;
 
 // init gfs
@@ -41,30 +46,30 @@ let gfs;
 const connection = mongoose.connection;
 connection.once('open', () => {
   gfs = Grid(connection.db, mongoose.mongo);
-  gfs.collection("uploads");
-  console.log("MongoDB database connection established successfully");
-})
+  gfs.collection('uploads');
+  // console.log('MongoDB database connection established successfully');
+});
 
 
 /**************** ROUTES ********/
 app.use('/report', reportRoutes); 
 app.use('/report', fileUploadRoutes); 
 
-app.get("/report/fileUpload/image/:filename", (req, res) => {
+app.get('/report/fileUpload/image/:filename', (req, res) => {
   gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
     // Check if file
     if (!file || file.length === 0) {
       return res.status(404).json({
-        err: "No file exists"
+        err: 'No file exists'
       });
     }
     // Check if image
-    if (file.contentType === "image/jpeg" || file.contentType === "image/png") {
+    if (file.contentType === 'image/jpeg' || file.contentType === 'image/png') {
       // Read output to browser
       const readstream = gfs.createReadStream(file.filename);
       readstream.pipe(res);
     } 
-    if (file.contentType === "application/pdf"){
+    if (file.contentType === 'application/pdf'){
       //res.json(file);
       const readstream = gfs.createReadStream(file.filename);
       readstream.pipe(res);
@@ -74,8 +79,9 @@ app.get("/report/fileUpload/image/:filename", (req, res) => {
 
 
 // Setup a global error handler.
+// eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
-  console.error(`Global error handler: ${JSON.stringify(err.stack)}`);
+  // console.error(`Global error handler: ${JSON.stringify(err.stack)}`);
 
   res.status(500).json({
     message: err.message,
@@ -94,6 +100,8 @@ app.get('*', (req, res) => {
 });
 
 
-app.listen(port, () => console.log('Server listening on port ' + port));
+app.listen(port, () => {
+  // console.log('Server listening on port ' + port)
+});
 
 module.exports.app = app;
