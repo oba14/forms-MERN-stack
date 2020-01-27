@@ -1,24 +1,21 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
 
-    return (
-      <div >
-        <nav >
-          <div >
-            <NavLink exact activeClassName="active"
-              to="/"
-              style={{
-                fontFamily: "monospace"
-              }}
-              className=" col s5 black-text">
+  return (
+    <div >
+      <nav className="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark">
+        <div >
+          <NavLink exact activeClassName="active"
+            to="/"
+            className="">
               Home
-            </NavLink>           
-          </div>
-        </nav>
-      </div>
-    );
-}
+          </NavLink>           
+        </div>
+      </nav>
+    </div>
+  );
+};
 
 export default Navbar;

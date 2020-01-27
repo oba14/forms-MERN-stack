@@ -1,10 +1,10 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
 import form from './formReducer';
-import errorReducer from "./errorReducer";
+import errorReducer from './errorReducer';
 
 const rootReducer = combineReducers({
-    form,
+  form,
   errors: errorReducer
 });
 
-export default rootReducer
+export default rootReducer;
