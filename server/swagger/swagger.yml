@@ -1,0 +1,72 @@
+swagger: "2.0"
+info:
+  version: "1.0"
+  title: "Forms MERN STACK API"
+  description: "Submit and retrieve data files from mongodb"
+tags:
+  - name: "forms-MERN-stack"
+    description: "Submit and retrieve data files from mongodb"
+schemes:
+  - "http"
+paths:
+  /report/allData:
+    get:
+      tags:
+        - "All forms"
+      summary: "Get all forms"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "A collection of all forms"
+          examples:
+            application/json:
+              [
+                {
+                  entity_type: "Mr",
+                  username: "alan donald",
+                  email: "alan@gmail.com",
+                  _id: "5e1a42c5db8c4831"
+                } ,
+                {
+                  entity_type: "Mr",
+                  username: "alan donald",
+                  email: "alan@gmail.com",
+                  _id: "5eb8c4d67ea8ba831"
+                } ,
+                {
+                  entity_type: "Mr",
+                  username: "alan donald",
+                  email: "alan@gmail.com",
+                  _id: "5e1a42c4d67ea8ba831"
+                } 
+              ]
+        500:
+          description: "Internal Server Error"   
+  /report/findone/{id}:
+    get:
+      tags:
+        - "form"
+      summary: "Get a form by given id"
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: "Form id"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "User submitted form"
+          examples:
+            application/json:
+                {
+                  id: '43',
+                  username: 'diana',
+                  email: 'diana@gmail.com',
+                  name: 'George W. Bush'
+                } 
+        404:
+          description: "There is no form with this id"    
+    

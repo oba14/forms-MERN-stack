@@ -6,6 +6,7 @@ const port = 5000;
 const cors = require('cors');
 const mongoose = require('mongoose');
 let bodyParser = require('body-parser');
+const swagger = require('./swagger');
 
 const Grid = require('gridfs-stream');
 
@@ -14,6 +15,7 @@ const fileUploadRoutes = require('../server/routes/fileUploadRoutes');
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use('/api/report/docs', swagger.serve, swagger.setup);
 
 // Setup morgan which gives us HTTP request logging.
 app.use(morgan('dev'));
@@ -31,7 +33,7 @@ const uri = process.env.ATLAS_URI;
 
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false})
   .then(() => {
-    // console.log('Database is connected'); 
+    console.log('Database is connected'); 
   },
   // eslint-disable-next-line no-unused-vars
   err => { 
