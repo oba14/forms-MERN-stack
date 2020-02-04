@@ -33,7 +33,7 @@ const uri = process.env.ATLAS_URI;
 
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false})
   .then(() => {
-    console.log('Database is connected'); 
+    // console.log('Database is connected'); 
   },
   // eslint-disable-next-line no-unused-vars
   err => { 
