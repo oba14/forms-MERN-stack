@@ -19,7 +19,7 @@ export const addForm = form => {
     })
       .then(succ => {
             
-        console.log('FORM successfully added', succ);
+        // console.log('FORM successfully added', succ);
         dispatch({
           type: 'ADD_FORM',
           form,
@@ -28,7 +28,7 @@ export const addForm = form => {
         return succ.data;
       })
       .catch(error => {
-        console.log('FORM couldnt added', error.message);
+        // console.log('FORM couldnt added', error.message);
         dispatch({
           type: 'ERROR_ADDING',
           error: error.message
@@ -41,20 +41,29 @@ export const addForm = form => {
 export const searchToken = token => {
 
   return async (dispatch) => {
+
+    dispatch({
+      type: 'IS_FETCHING'
+    });
+    
     axios({
       method: 'get',
       url: `${url}findone/${token}`
     })
       .then(succ => {
-            
-        console.log('FORM Token Found', succ.status);
-        dispatch({
-          type: 'SHOW_FORM',
-          form: succ.data
-        });
+         
+
+        // console.log('FORM Token Found', succ.status);
+        setTimeout(() => {
+
+          dispatch({
+            type: 'SHOW_FORM',
+            form: succ.data
+          });
+        }, [500])
       })
       .catch(error => {
-        console.log('FORM Token not in DB', error.message);
+        // console.log('FORM Token not in DB', error.message);
         dispatch({
           type: 'ERROR_FETCHING',
           error: error.message
@@ -64,7 +73,7 @@ export const searchToken = token => {
 };
 
 // Fetch ALL FORMS from mongodb and display item when component is rendered
-export const showForm = id => {
+export const showForm = () => {
   return async (dispatch) => {
     dispatch({
       type: 'IS_FETCHING'
@@ -78,7 +87,7 @@ export const showForm = id => {
         });
       }) 
       .catch(error => { 
-        console.log('Can’t access ' + url + ' response. Blocked by browser?');
+        // console.log('Can’t access ' + url + ' response. Blocked by browser?');
         dispatch({
           type: 'ERROR_FETCHING',
           error: error.message
@@ -96,15 +105,15 @@ export const deleteForm = id => {
       url: `${url}delete/${id}`,
       data: id
     })
-      .then(succ => {
-        console.log('item successfully deleted', succ.status);
+      .then(() => {
+        // console.log('item successfully deleted', succ.status);
         dispatch({
           type: 'DELETE_TODO',
           id
         });
       })
       .catch(error => {
-        console.log('Item couldnt deleted', error.message);
+        // console.log('Item couldnt deleted', error.message);
         dispatch({
           type: 'ERROR_DELETING',
           error: error.message
@@ -122,15 +131,15 @@ export const editForm = form => {
       url: `${url}edit/${form._id}`,
       data: form
     })
-      .then(succ => {
-        console.log('item successfully UPDATED MONGOOSE', succ.status);
+      .then(() => {
+        // console.log('item successfully UPDATED MONGOOSE', succ.status);
         dispatch({
           type: 'EDIT_TODO',
           form
         });  
       })
       .catch(error => {
-        console.log('Item couldnt Updated MONGOOSE', error.message);
+        // console.log('Item couldnt Updated MONGOOSE', error.message);
         dispatch({
           type: 'ERROR_FETCHING',
           error: error.message

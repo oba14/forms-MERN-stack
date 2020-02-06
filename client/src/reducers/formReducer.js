@@ -1,5 +1,5 @@
 const initialState = {
-  form: [],
+  form: null,
   attachments: [],
   isFetching: false,
   formSubmitted: false,
@@ -34,12 +34,12 @@ const formReducer = (state = initialState, action) => {
     case 'FORM_EXIST':
       return {
         ...state,
-        formExist: true
+        formExist: action.formExist
       };
     case 'IS_FETCHING':
       return {
         ...state,
-        form: [],
+        form: null,
         isFetching: true,
         formExist: false,
         error: null,
@@ -50,7 +50,7 @@ const formReducer = (state = initialState, action) => {
     case 'ERROR_FETCHING':
       return {
         ...state,
-        form: [],
+        form: null,
         isFetching: false,
         formExist: false,
         error: action.error,
@@ -85,7 +85,7 @@ const formReducer = (state = initialState, action) => {
     case 'ADD_FORM':
       return {
         ...state,
-        form: [],
+        form: null,
         formSubmitted: true,
         formExist: false,
         isFetching: false,

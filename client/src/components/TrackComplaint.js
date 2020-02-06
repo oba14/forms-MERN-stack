@@ -13,6 +13,7 @@ const TrackComplaint = () => {
   const form = useSelector(state => state.form.form);
   const formExist = useSelector(state => state.form.formExist);
   const error = useSelector(state => state.form.error);
+  const isFetching = useSelector(state => state.form.isFetching);
   const [ editing, setEditing ] = useState(false);
   const [ editedName, setEditedName ] = useState('');
   const [ editedEmail, setEditedEmail ] = useState('');
@@ -20,18 +21,25 @@ const TrackComplaint = () => {
   
   useEffect (() => {
   
-  },[ formExist, form, error ]);
+  },[ formExist, form, error, isFetching ]);
+
+  useEffect (() => {
+    if(form){
+      toast.success('Form Found')
+    }
+  }, [form])
+
+  useEffect (() => {
+    if(error){
+      toast.error('Given token number is wrong!')
+    }
+  }, [error])
 
   const add = (event) => {
     //event.preventDefault()
     const tokenNo = event.token;
     dispatch(searchToken(tokenNo));
   
-    if(formExist ){
-      toast.success('Form found!');
-    } else {
-      toast.error('Wrong token number');
-    }
   };
 
   const saveEditedForm = () => {
@@ -78,7 +86,10 @@ const TrackComplaint = () => {
         </div>
       </div>
       <div style={ { margin: '10px' } }>
-        { !editing && formExist && (
+        {isFetching && (
+          <div>Loading....</div>
+        )}
+        { !editing && form && ( 
           <div>       
             <Card className= "cards">
               <CardBody style={ { width: '100%' } }>

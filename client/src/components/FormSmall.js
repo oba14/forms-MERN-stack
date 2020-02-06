@@ -20,7 +20,7 @@ const ShortReport = () => {
    * 
    * @param {*} data 
    */
-  const onSubmit = (data) => {
+  const onSubmit = () => {
     
     const myForm = document.getElementById('myForm');
     const formData = new FormData(myForm);        
@@ -119,7 +119,7 @@ const ShortReport = () => {
           {errorAdding && (
             <div>
               {toast.error('Error Adding Form', { position: toast.POSITION.TOP_CENTER },{ closeButton:false })}
-              <label style={ { display: 'inline-block', border: '1px solid red' } }>Form submission wasn't successfull</label>
+              <label style={ { display: 'inline-block', border: '1px solid red' } }>{'Form submission wasn\'t successfull'}</label>
               <NavLink to='/'> <i className="material-icons left">keyboard_backspace</i>Go Back To Home</NavLink>
             </div>
           )}
