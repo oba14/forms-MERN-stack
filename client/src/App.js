@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import LandingPage from './components/LandingPage';
-import FormSmall from './components/FormSmall';
-import TrackComplaint from './components/TrackComplaint';
+import LandingPage from './components/pages/LandingPage';
+import FormSmall from './components/pages/FormSmall';
+import TrackComplaint from './components/pages/TrackComplaint';
 import Navbar from './components/navbar/Navbar';
-import NotFound from './components/NotFound';
+import NotFound from './components/pages/NotFound';
 import { ToastContainer } from 'react-toastify';
 
 function App() {

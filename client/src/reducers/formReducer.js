@@ -9,7 +9,9 @@ const initialState = {
   error_deleting: false,
   form_id: null,
   loaded: false,
-  token: ''
+  token: '',
+  form_deleted: false,
+  form_updated: false
 };
 /**
  * 
@@ -103,7 +105,8 @@ const formReducer = (state = initialState, action) => {
         formExist: false,
         error: null,
         error_adding: false,
-        error_deleting: false
+        error_deleting: false,
+        form_deleted: true
       }; 
     
     case 'EDIT_FORM':
@@ -120,7 +123,8 @@ const formReducer = (state = initialState, action) => {
         formExist: false,
         error: null,
         error_adding: false,
-        error_deleting: false
+        error_deleting: false,
+        form_updated: true
       };
 
     default:

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteForm, editForm, searchToken } from '../actions/todoActions';
+import { deleteForm, editForm, searchToken } from '../../actions/todoActions';
 import {
   Card, CardText, CardBody, Button
 } from 'reactstrap';
@@ -14,6 +14,10 @@ const TrackComplaint = () => {
   const formExist = useSelector(state => state.form.formExist);
   const error = useSelector(state => state.form.error);
   const isFetching = useSelector(state => state.form.isFetching);
+  const form_id = useSelector(state => state.form.form_id);
+  const form_deleted = useSelector(state => state.form.form_deleted);
+  const form_updated = useSelector(state => state.form.form_updated);
+
   const [ editing, setEditing ] = useState(false);
   const [ editedName, setEditedName ] = useState('');
   const [ editedEmail, setEditedEmail ] = useState('');
@@ -34,6 +38,26 @@ const TrackComplaint = () => {
       toast.error('Given token number is wrong!')
     }
   }, [error])
+
+  
+  useEffect(() => {
+    if (form_deleted) {
+      toast.success('Form is deleted!');
+    }
+  }, [form_deleted])
+  
+  useEffect(() => {
+    if (form_updated) {
+      toast.success('Form is updated!');
+    }
+  }, [form_updated])
+  
+  useEffect(() => {
+    if(form_id) {
+      dispatch(searchToken(form_id));
+  }
+
+  }, [form_id]);
 
   const add = (event) => {
     //event.preventDefault()
@@ -77,8 +101,12 @@ const TrackComplaint = () => {
         <div className= 'col-md-8'>
           <h3>Enter Form Number</h3>
           <form  onSubmit={ handleSubmit(add) } style={ { margin: '15px' } } id="todoForm">      
-            <input className='form-control' type="text" placeholder="token" name="token" 
-              ref={ register({ required: true }) }></input><br></br>
+            <input className='form-control' 
+            type="text" 
+            placeholder="token" 
+            name="token"
+            value={form_id} 
+            ref={ register({ required: true }) }></input><br></br>
             <button type="submit">
               <span role="img" aria-label="Add">👍</span>
             </button>
