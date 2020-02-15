@@ -5,7 +5,7 @@ const morgan = require('morgan');
 const port = 5000;
 const cors = require('cors');
 const mongoose = require('mongoose');
-let bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 const swagger = require('./swagger');
 
 const Grid = require('gridfs-stream');
@@ -23,7 +23,6 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-
 //app.use(express.static('public'));
 
 /************** mongodb ************************* */
@@ -31,7 +30,7 @@ app.use(bodyParser.urlencoded({
 const uri = process.env.ATLAS_URI;
 // console.log('mongo uri', uri);
 
-mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false})
+mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false })
   .then(() => {
     // console.log('Database is connected'); 
   },
@@ -51,7 +50,6 @@ connection.once('open', () => {
   gfs.collection('uploads');
   // console.log('MongoDB database connection established successfully');
 });
-
 
 /**************** ROUTES ********/
 app.use('/report', reportRoutes); 
@@ -79,7 +77,6 @@ app.get('/report/fileUpload/image/:filename', (req, res) => {
   });
 });
 
-
 // Setup a global error handler.
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
@@ -91,7 +88,6 @@ app.use((err, req, res, next) => {
   });
 });
 
-
 // if none of the routes match
 app.get('*', (req, res) => {
   res
@@ -100,7 +96,6 @@ app.get('*', (req, res) => {
       message: 'page not found'
     });
 });
-
 
 app.listen(port, () => {
   // console.log('Server listening on port ' + port)

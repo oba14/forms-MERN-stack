@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 mongoose.Schema.Types.Boolean.convertToFalse.add('');
 const Schema = mongoose.Schema;
 
-let attachmentSchema = new Schema({
+const attachmentSchema = new Schema({
   originalname: {
     type: String
   },
@@ -45,7 +45,7 @@ let attachmentSchema = new Schema({
 });
 
 // collection and schema for Registration
-let Forms = new Schema({
+const Forms = new Schema({
   id: {
     type: String
   },
@@ -65,7 +65,7 @@ let Forms = new Schema({
     type: String,
     default: ''
   },
-  attachments: [attachmentSchema]
+  attachments: [ attachmentSchema ]
 }, {
   collection: 'Forms'
 });
