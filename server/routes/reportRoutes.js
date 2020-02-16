@@ -99,11 +99,11 @@ reportRoutes.delete("/delete/:id", async (req, res) => {
   await Forms.findByIdAndDelete(id)
     .then(reqq => {
       // console.log('form deleted ', reqq);
-      res.sendStatus(200);
+      res.status(200).json({ reqq, message: "form deleted" });
     })
     .catch(err => {
       // console.log('form NOT deleted ', err);
-      res.sendStatus(400);
+      res.status(400).json({ err });
     });
 });
 

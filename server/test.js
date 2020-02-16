@@ -94,3 +94,31 @@ describe("EDIT FORM BY GIVEN ID", () => {
       .end(done);
   });
 });
+
+describe.only("DELETE A FORM", () => {
+  let formId;
+  it("create a form in db", done => {
+    request(app)
+      .post("/report/add")
+      .type("form")
+      .send({ username: "snow white", email: "snowwhite@gmail.com" })
+      .set("Accept", "application/json")
+      .expect(form => {
+        console.log(form.body);
+        formId = form.body.id;
+        assert.equal(form.status, 200);
+      })
+      .end(done);
+  });
+  it("delete the form created", done => {
+    request(app)
+      .delete(`/report/delete/${formId}`)
+      .set("Accept", "application/json")
+      .expect(res => {
+        console.log("DELETE RES", res.body);
+
+        assert.equal(res.body.message, "form deleted");
+      })
+      .end(done);
+  });
+});
