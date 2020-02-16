@@ -60,7 +60,6 @@ describe("Forms-MERN-stack", () => {
         .get("/report/findone/UUUUUUUUUU")
         .set("Accept", "application/json")
         .expect(res => {
-          // console.log('notf founf', res.body);
           assert.equal(res.body.message, "form not found");
         })
         .end(done);
@@ -104,7 +103,6 @@ describe.only("DELETE A FORM", () => {
       .send({ username: "snow white", email: "snowwhite@gmail.com" })
       .set("Accept", "application/json")
       .expect(form => {
-        console.log(form.body);
         formId = form.body.id;
         assert.equal(form.status, 200);
       })
@@ -115,8 +113,6 @@ describe.only("DELETE A FORM", () => {
       .delete(`/report/delete/${formId}`)
       .set("Accept", "application/json")
       .expect(res => {
-        console.log("DELETE RES", res.body);
-
         assert.equal(res.body.message, "form deleted");
       })
       .end(done);
