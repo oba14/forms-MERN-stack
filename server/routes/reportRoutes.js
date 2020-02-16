@@ -83,11 +83,11 @@ reportRoutes.put("/edit/:id", async (req, res) => {
   await Forms.findByIdAndUpdate(id, req.body)
     .then(reqq => {
       // console.log('form Updated ', reqq);
-      res.sendStatus(200);
+      res.status(200).json({ reqq });
     })
     .catch(err => {
       // console.log('form NOT updated ', err);
-      res.sendStatus(400);
+      res.status(400).json({ err });
     });
 });
 

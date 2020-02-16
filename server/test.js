@@ -67,3 +67,30 @@ describe("Forms-MERN-stack", () => {
     });
   });
 });
+
+describe("EDIT FORM BY GIVEN ID", () => {
+  it("returns JSON", done => {
+    request(app)
+      .put("/report/edit/5e1a4754a2965e47bbb14d85")
+      .set("Accept", "application/json")
+      .expect("Content-Type", /json/, done);
+  });
+
+  it("returns 200 OK", done => {
+    request(app)
+      .put("/report/edit/5e1a4754a2965e47bbb14d85")
+      .set("Accept", "application/json")
+      .expect(200, done);
+  });
+
+  it("returns Form data", done => {
+    request(app)
+      .put("/report/edit/5e1a4754a2965e47bbb14d85")
+      .send({ username: "James Bond" })
+      .set("Accept", "application/json")
+      .expect(res => {
+        assert.equal(res.body.reqq.username, "James Bond");
+      })
+      .end(done);
+  });
+});
