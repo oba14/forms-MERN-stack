@@ -12,7 +12,7 @@ describe("Forms-MERN-stack", () => {
     });
   });
 
-  describe("GET All data", () => {
+  describe("GET All forms from the db", () => {
     it("returns 200 OK", done => {
       request(app)
         .get("/report/allData")
