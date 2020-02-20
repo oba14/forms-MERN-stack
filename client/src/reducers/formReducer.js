@@ -9,87 +9,74 @@ const initialState = {
   error_deleting: false,
   form_id: null,
   loaded: false,
-  token: '',
+  token: "",
   form_deleted: false,
   form_updated: false
 };
 /**
- * 
- * @param {*} state 
- * @param {*} action 
+ *
+ * @param {*} state
+ * @param {*} action
  */
 const formReducer = (state = initialState, action) => {
   switch (action.type) {
-
-    case 'GET_ATTACHMENTS':
+    case "GET_ATTACHMENTS":
       return {
         ...state,
         attachments: action.attachments
       };
-    
-    case 'FILES_LOADED':
+
+    case "FILES_LOADED":
       return {
         ...state,
         loaded: true
       };
 
-    case 'FORM_EXIST':
+    case "FORM_EXIST":
       return {
         ...state,
         formExist: action.formExist
       };
-    case 'IS_FETCHING':
+    case "IS_FETCHING":
       return {
         ...state,
-        form: null,
-        isFetching: true,
-        formExist: false,
-        error: null,
-        error_adding: false,
-        error_deleting: false
+        isFetching: true
       };
 
-    case 'ERROR_FETCHING':
+    case "ERROR_FETCHING":
       return {
         ...state,
-        form: null,
         isFetching: false,
         formExist: false,
-        error: action.error,
-        error_adding: false,
-        error_deleting: false
-      };  
+        error: action.error
+      };
 
-    case 'SHOW_FORM':
+    case "SHOW_FORM":
       return {
-        ...state, 
+        ...state,
         form: action.form,
         isFetching: false,
         formExist: true,
         formSubmitted: false,
-        error: null,
-        error_adding: false,
-        error_deleting: false
+        error: null
       };
-    
-    case 'ERROR_DELETING':
+
+    case "ERROR_DELETING":
       return {
         ...state,
         error_deleting: true
       };
 
-    case 'ERROR_ADDING':
+    case "ERROR_ADDING":
       return {
         ...state,
         error_adding: true
-      }; 
-      
-    case 'ADD_FORM':
+      };
+
+    case "ADD_FORM":
       return {
         ...state,
-        form: null,
         formSubmitted: true,
-        formExist: false,
         isFetching: false,
         error: null,
         error_adding: false,
@@ -97,7 +84,7 @@ const formReducer = (state = initialState, action) => {
         form_id: action.form_id
       };
 
-    case 'DELETE_FORM':
+    case "DELETE_FORM":
       return {
         ...state,
         form: state.form.filter(e => e._id !== action.id),
@@ -107,9 +94,9 @@ const formReducer = (state = initialState, action) => {
         error_adding: false,
         error_deleting: false,
         form_deleted: true
-      }; 
-    
-    case 'EDIT_FORM':
+      };
+
+    case "EDIT_FORM":
       return {
         ...state,
         form: state.form.map(e => {
