@@ -3,7 +3,6 @@ import { render, fireEvent, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import ReactDOM from "react-dom";
 import App from "./App";
-import FormSmall from "./components/pages/FormSmall";
 
 it("renders without crashing", () => {
   const div = document.createElement("div");
@@ -26,11 +25,5 @@ test("renders submit form link", () => {
 test("render edit form link", () => {
   const { getByText } = render(<App />);
   const linkElement = getByText(/edit form/i);
-  expect(linkElement).toBeInTheDocument();
-});
-
-test("render fill in details", () => {
-  const { getByText } = render(<FormSmall />);
-  const linkElement = getByText(/Fill in details/i);
   expect(linkElement).toBeInTheDocument();
 });
